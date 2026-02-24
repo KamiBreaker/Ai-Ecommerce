@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fashion.AI Ecosystem MVP
 
-## Getting Started
+A premium Next.js frontend scaffold for an AI-powered fashion marketplace, specifically tailored for the Bangladesh (BD) market with global luxury standards.
 
-First, run the development server:
+## 🚀 Getting Started
 
+### Prerequisites
+- Node.js (v18+)
+- npm
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run Locally
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗 Architecture & Features
 
-## Learn More
+### Core Stack
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Bootstrap 5 + Sass (Custom Luxury Tokens)
+- **Icons**: Lucide React
+- **State Management**: React Context API with LocalStorage Persistence
 
-To learn more about Next.js, take a look at the following resources:
+### Key Components
+- **AI Stylist Widget**: Interactive floating assistant for user engagement.
+- **Creator Studio**: Mock dashboard for creators to manage AI and physical drops.
+- **Localized View**: Support for BDT currency and region-specific metadata.
+- **Onboarding Flow**: Multi-step protected flow for new users.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Data Models (`src/types/index.ts`)
+- `Product`: Comprehensive apparel model with AI metadata.
+- `Creator`: Human vs Synthetic studio profiles.
+- `User`: Mock authentication state.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ♿ Accessibility & Quality Assurance
 
-## Deploy on Vercel
+- **Contrast**: All custom tokens ($primary, $gold, etc.) meet AA standards on white/linen backgrounds.
+- **Typography**: Uses `Playfair Display` for high-end headings and `Inter` for readability.
+- **Keyboard Navigation**: Bootstrap components and custom buttons use standard focus states.
+- **ARIA**: Semantic HTML5 used throughout (main, nav, footer, sections).
+- **Responsive Breakpoints**:
+  - `Mobile (< 576px)`: Stacked cards, simplified navbar.
+  - `Tablet (576px - 992px)`: 2-column grids.
+  - `Desktop (> 992px)`: Expanded navigation, context-rich layouts.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📅 Roadmap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Phase 1**: Scaffold & Design System (Completed)
+- **Phase 2**: Core Catalog & E-commerce Logic (Completed)
+- **Phase 3**: Marketplace Interactions & AI Polish (Completed)
+- **Phase 4**: Real API Integration & Image Generation Backend (Backend Pending)

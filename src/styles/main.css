@@ -1,0 +1,85 @@
+/* Luxury Design Tokens via CSS Variables */
+:root {
+    --fashion-primary: #1a1a1a;
+    --fashion-secondary: #f4f1ea;
+    --fashion-accent: #d4af37;
+    --fashion-text: #2d2d2d;
+    --fashion-text-muted: #6c757d;
+
+    /* Overriding Bootstrap CSS Variables */
+    --bs-primary: #1a1a1a;
+    --bs-primary-rgb: 26, 26, 26;
+    --bs-body-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Utilities */
+.font-serif {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.text-gold {
+    color: var(--fashion-accent) !important;
+}
+
+.bg-linen {
+    background-color: var(--fashion-secondary) !important;
+}
+
+.card-fashion {
+    border: none !important;
+    transition: transform 0.3s ease;
+}
+
+.card-fashion:hover {
+    transform: translateY(-5px);
+}
+
+.ai-glow {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.5) !important;
+}
+
+.navbar-luxury {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hover-up {
+    transition: transform 0.2s ease;
+}
+
+.hover-up:hover {
+    transform: scale(1.05);
+}
+
+.aspect-ratio-3-4 {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .display-1 {
+        font-size: 3.5rem !important;
+    }
+
+    .display-5 {
+        font-size: 2rem !important;
+    }
+}
+
+/* Custom Button Styling to match luxury aesthetic */
+.btn-primary {
+    background-color: var(--fashion-primary);
+    border-color: var(--fashion-primary);
+    border-radius: 0;
+    padding: 0.75rem 2rem;
+}
+
+.btn-primary:hover {
+    background-color: #000;
+    border-color: #000;
+}
+
+.btn-outline-dark {
+    border-radius: 0;
+}

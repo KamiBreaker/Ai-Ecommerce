@@ -1,0 +1,100 @@
+import { Product, Creator, Collection } from '../types';
+
+export const MOCK_CREATORS: Creator[] = [
+    {
+        id: 'c1',
+        name: 'Creator One',
+        bio: 'Professional fashion designer and stylist.',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+        followers: 1200,
+        collections: ['col1'],
+        isAiCreator: false,
+    },
+    {
+        id: 'c2',
+        name: 'Studio Two',
+        bio: 'Innovative design studio.',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop',
+        followers: 800,
+        collections: ['col2'],
+        isAiCreator: true,
+    },
+];
+
+export const MOCK_PRODUCTS: Product[] = [
+    {
+        id: 'p1',
+        name: 'Essential Item 01',
+        description: 'High-quality garment designed for comfort and style.',
+        price: 15000,
+        currency: 'BDT',
+        image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&h=1000&fit=crop',
+        category: 'Category 1',
+        tags: ['New', 'Essential'],
+        creatorId: 'c1',
+        isAiGenerated: true,
+        stock: 10,
+        rating: 4.5,
+    },
+    {
+        id: 'p2',
+        name: 'Premium Item 02',
+        description: 'Modern silhouette with premium fabric and detail.',
+        price: 4500,
+        currency: 'BDT',
+        image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1000&fit=crop',
+        category: 'Category 2',
+        tags: ['Classic', 'Popular'],
+        creatorId: 'c1',
+        isAiGenerated: false,
+        stock: 15,
+        rating: 4.2,
+    },
+    {
+        id: 'p3',
+        name: 'Regular Item 03',
+        description: 'Versatile addition to any contemporary wardrobe.',
+        price: 2200,
+        currency: 'BDT',
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop',
+        category: 'Category 3',
+        tags: ['Basic', 'Essential'],
+        creatorId: 'c2',
+        isAiGenerated: true,
+        stock: 30,
+        rating: 4.0,
+    },
+    {
+        id: 'p4',
+        name: 'Luxury Item 04',
+        description: 'Exquisite craftsmanship meets sophisticated design.',
+        price: 25000,
+        currency: 'BDT',
+        image: 'https://images.unsplash.com/photo-1518831959646-742c3a14eb8b?w=800&h=1000&fit=crop',
+        category: 'Category 4',
+        tags: ['Exclusive', 'Luxury'],
+        creatorId: 'c1',
+        isAiGenerated: false,
+        stock: 5,
+        rating: 5.0,
+    }
+];
+
+export const MOCK_COLLECTIONS: Collection[] = [
+    {
+        id: 'col1',
+        name: 'Season Collection 01',
+        description: 'A curated selection of our latest designs.',
+        bannerImage: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1600&h=600&fit=crop',
+        creatorId: 'c1',
+        productIds: ['p1', 'p2', 'p4'],
+    },
+    {
+        id: 'col2',
+        name: 'Studio Collection 02',
+        description: 'Bespoke designs from our primary studio.',
+        bannerImage: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&h=600&fit=crop',
+        creatorId: 'c2',
+        productIds: ['p3'],
+    },
+];

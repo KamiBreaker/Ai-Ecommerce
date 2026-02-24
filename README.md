@@ -30,7 +30,7 @@ npm run start
 ### Core Stack
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
-- **Styling**: Bootstrap 5 + Sass (Custom Luxury Tokens)
+- **Styling**: Bootstrap 5 + Css (Custom Luxury Tokens)
 - **Icons**: Lucide React
 - **State Management**: React Context API with LocalStorage Persistence
 

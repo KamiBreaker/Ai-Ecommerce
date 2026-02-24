@@ -2,7 +2,7 @@
 
 A premium Next.js frontend scaffold for an AI-powered fashion marketplace, specifically tailored for the Bangladesh (BD) market with global luxury standards.
 
-## 🚀 Getting Started
+## 🚀 Getting Started (https://ai-ecommerce-five.vercel.app/)
 
 ### Prerequisites
 - Node.js (v18+)

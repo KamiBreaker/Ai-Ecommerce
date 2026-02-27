@@ -1,66 +1,109 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useUser } from '../../contexts/UserContext';
-import { Sparkles, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function Onboarding() {
-    const [step, setStep] = useState(1);
     const router = useRouter();
-    const { login } = useUser();
+    const [step, setStep] = useState(0);
 
-    const nextStep = () => {
-        if (step === 3) {
-            login('newuser@example.com');
-            router.push('/');
-        } else {
-            setStep(step + 1);
-        }
+    const slides = [
+        "Sign up or log in to your account to access exclusive content.",
+        "Track your orders, returns, and manage your personal information.",
+        "Discover the future of synthetic fashion and AI-driven design."
+    ];
+
+    const handleContinueAsGuest = () => {
+        // Logically we would set a 'guest' flag in cookie/localStorage
+        localStorage.setItem('onboarded', 'true');
+        router.push('/');
     };
 
     return (
-        <div className="container py-5 my-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6 text-center">
-                    <div className="mb-4">
-                        <span className="badge bg-linen text-dark rounded-pill px-3 py-2">Step {step} of 3</span>
-                    </div>
+        <div className="onboarding-viewport d-flex flex-column align-items-center justify-content-between py-5 text-white text-center">
+            {/* Background Overlay */}
+            <div className="onboarding-bg"></div>
 
-                    {step === 1 && (
-                        <div className="animate-fade-in">
-                            <Sparkles size={48} className="text-gold mb-4" />
-                            <h1 className="font-serif mb-3">Welcome to the Nexus</h1>
-                            <p className="text-muted mb-5">Fashion.AI is where high-end craft meets cutting-edge algorithms. Let's personalize your experience.</p>
-                        </div>
-                    )}
+            <div className="onboarding-content w-100 px-4 mt-auto">
+                {/* Logo */}
+                <h1 className="font-serif display-1 tracking-widest mb-5 fw-bold">FASHION.AI</h1>
 
-                    {step === 2 && (
-                        <div className="animate-fade-in">
-                            <h2 className="font-serif mb-4">Define Your Style</h2>
-                            <div className="row g-3 mb-5">
-                                {['Traditionalist', 'Futurist', 'Minimalist', 'Eclectic'].map((style) => (
-                                    <div key={style} className="col-6">
-                                        <button className="btn btn-outline-dark w-100 py-3 rounded-0">{style}</button>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                {/* Text Carousel / Steps */}
+                <div className="px-4 mb-4" style={{ minHeight: '80px' }}>
+                    <p className="lead fw-light mb-0">
+                        {slides[step]}
+                    </p>
+                </div>
 
-                    {step === 3 && (
-                        <div className="animate-fade-in">
-                            <CheckCircle size={48} className="text-success mb-4" />
-                            <h2 className="font-serif mb-3">System Ready</h2>
-                            <p className="text-muted mb-5">Your personalized style engine is calibrated. Welcome to the future of fashion.</p>
-                        </div>
-                    )}
+                {/* Indicators */}
+                <div className="d-flex justify-content-center gap-2 mb-5">
+                    {slides.map((_, i) => (
+                        <div
+                            key={i}
+                            onClick={() => setStep(i)}
+                            className={`rounded-pill cursor-pointer ${step === i ? 'bg-white' : 'bg-white opacity-25'}`}
+                            style={{ width: '8px', height: '8px', cursor: 'pointer' }}
+                        ></div>
+                    ))}
+                </div>
 
-                    <button onClick={nextStep} className="btn btn-primary px-5 py-3 w-100 d-flex align-items-center justify-content-center gap-2">
-                        {step === 3 ? 'Enter the Ecosystem' : 'Continue'} <ArrowRight size={18} />
+                {/* Action Buttons */}
+                <div className="d-flex flex-column gap-3 w-100 max-width-mobile mx-auto">
+                    <Link href="/login" className="btn btn-light rounded-0 py-3 fw-bold text-uppercase tracking-wider">
+                        Log In
+                    </Link>
+                    <Link href="/signup" className="btn btn-outline-light rounded-0 py-3 fw-bold text-uppercase tracking-wider">
+                        Sign Up
+                    </Link>
+                </div>
+
+                <div className="mt-5">
+                    <button
+                        onClick={handleContinueAsGuest}
+                        className="btn btn-link text-white text-decoration-none small text-uppercase tracking-widest opacity-75 hover-opacity-100"
+                    >
+                        Continue as a Guest
                     </button>
                 </div>
             </div>
+
+            <style jsx>{`
+                .onboarding-viewport {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    z-index: 9999;
+                    background-color: #000;
+                    overflow: hidden;
+                }
+                .onboarding-bg {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%), 
+                                url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2094&auto=format&fit=crop');
+                    background-size: cover;
+                    background-position: center;
+                    z-index: -1;
+                }
+                .onboarding-content {
+                    max-width: 800px;
+                }
+                .max-width-mobile {
+                    max-width: 400px;
+                }
+                .cursor-pointer {
+                    cursor: pointer;
+                }
+                .hover-opacity-100:hover {
+                    opacity: 1 !important;
+                }
+            `}</style>
         </div>
     );
 }

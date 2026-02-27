@@ -7,6 +7,7 @@ import { CartProvider } from "../contexts/CartContext";
 import { CatalogProvider } from "../contexts/CatalogContext";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import OnboardingGuard from "../components/auth/OnboardingGuard";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -31,9 +32,11 @@ export default function RootLayout({
         <UserProvider>
           <CatalogProvider>
             <CartProvider>
-              <Navbar />
-              <main style={{ minHeight: '60vh' }}>{children}</main>
-              <Footer />
+              <OnboardingGuard>
+                <Navbar />
+                <main style={{ minHeight: '60vh' }}>{children}</main>
+                <Footer />
+              </OnboardingGuard>
             </CartProvider>
           </CatalogProvider>
         </UserProvider>

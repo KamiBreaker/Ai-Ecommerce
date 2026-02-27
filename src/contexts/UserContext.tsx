@@ -5,9 +5,10 @@ import { User } from '../types';
 
 interface UserContextType {
     user: User | null;
-    login: (email: string) => void;
+    setUser: (user: User) => void;
     logout: () => void;
     isAuthenticated: boolean;
+    isAdmin: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -22,16 +23,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         }
     }, []);
 
-    const login = (email: string) => {
-        const mockUser: User = {
-            id: 'u1',
-            name: 'Omar Faruk',
-            email: email,
-            role: 'customer',
-            location: 'Dhaka, Bangladesh',
-        };
-        setUser(mockUser);
-        localStorage.setItem('fashion_user', JSON.stringify(mockUser));
+    const setUserWithStorage = (userData: User) => {
+        setUser(userData);
+        localStorage.setItem('fashion_user', JSON.stringify(userData));
     };
 
     const logout = () => {
@@ -40,7 +34,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+        <UserContext.Provider value={{
+            user,
+            setUser: setUserWithStorage,
+            logout,
+            isAuthenticated: !!user,
+            isAdmin: user?.role === 'ADMIN'
+        }}>
             {children}
         </UserContext.Provider>
     );

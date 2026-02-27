@@ -59,12 +59,20 @@
 /* Responsive Typography */
 @media (max-width: 768px) {
     .display-1 {
-        font-size: 3.5rem !important;
+        font-size: 3rem !important;
     }
 
     .display-5 {
         font-size: 2rem !important;
     }
+}
+
+.tracking-widest {
+    letter-spacing: 0.3em !important;
+}
+
+.tracking-wider {
+    letter-spacing: 0.1em !important;
 }
 
 /* Custom Button Styling to match luxury aesthetic */

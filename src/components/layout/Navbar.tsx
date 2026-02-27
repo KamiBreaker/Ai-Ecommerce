@@ -4,11 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { useUser } from '../../contexts/UserContext';
 import { useCart } from '../../contexts/CartContext';
-import { ShoppingBag, User as UserIcon, Search, Menu } from 'lucide-react';
+import { ShoppingBag, User as UserIcon, Search, Menu, LogOut } from 'lucide-react';
 import LocaleSwitcher from '../common/LocaleSwitcher';
 
 export default function Navbar() {
-    const { user, login, logout, isAuthenticated } = useUser();
+    const { user, logout, isAuthenticated } = useUser();
     const { totalItems } = useCart();
 
     return (
@@ -36,14 +36,21 @@ export default function Navbar() {
                                 <>
                                     <li className="px-3 py-2 fw-bold small text-muted text-uppercase">Hello, {user?.name}</li>
                                     <li><hr className="dropdown-divider" /></li>
-                                    <li><Link href="/profile" className="dropdown-item py-2">My Profile</Link></li>
-                                    <li><button onClick={logout} className="dropdown-item py-2 text-danger">Logout</button></li>
+                                    <li><Link href="/profile" className="dropdown-item py-2 d-flex align-items-center gap-2"><UserIcon size={16} /> My Profile</Link></li>
+                                    <li>
+                                        <button onClick={logout} className="dropdown-item py-2 text-danger d-flex align-items-center gap-2 mt-2 border-top">
+                                            <LogOut size={16} /> Logout
+                                        </button>
+                                    </li>
                                 </>
                             ) : (
                                 <li>
-                                    <button onClick={() => login('user@example.com')} className="btn btn-primary w-100 rounded-0">
-                                        Mock Login
-                                    </button>
+                                    <Link href="/signup" className="btn btn-dark w-100 rounded-0 text-uppercase tracking-wider small">
+                                        Enter Ecosystem
+                                    </Link>
+                                    <Link href="/login" className="btn btn-outline-dark w-100 rounded-0 text-uppercase tracking-wider small mt-2">
+                                        Login
+                                    </Link>
                                 </li>
                             )}
                         </ul>
@@ -66,6 +73,9 @@ export default function Navbar() {
                         </li>
                         <li className="nav-item">
                             <Link href="/catalog" className="nav-link px-3 text-uppercase small tracking-wider">Shop</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/discover" className="nav-link px-3 text-uppercase small tracking-wider">Discover</Link>
                         </li>
                     </ul>
                 </div>

@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id               String            @id @default(cuid())
+  email            String            @unique
+  password         String
+  name             String?
+  role             Role              @default(USER)
+  stylePreferences String[] // Store as array of tags
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  favoriteProducts String[] // Store product IDs
+  creatorProfile   Creator?
+}
+
+model Creator {
+  id           String      @id @default(cuid())
+  name         String
+  bio          String?
+  avatar       String?
+  followers    Int         @default(0)
+  isAiCreator  Boolean     @default(false)
+  userId       String      @unique
+  user         User        @relation(fields: [userId], references: [id])
+  products     Product[]
+  stylePosts   StylePost[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  name          String
+  description   String
+  price         Float
+  currency      String   @default("BDT")
+  category      String
+  image         String?
+  tags          String[]
+  isAiGenerated Boolean  @default(false)
+  rating        Float    @default(5.0)
+  stock         Int      @default(10)
+  creatorId     String?
+  creator       Creator? @relation(fields: [creatorId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model StylePost {
+  id        String   @id @default(cuid())
+  image     String
+  caption   String?
+  creatorId String
+  creator   Creator  @relation(fields: [creatorId], references: [id])
+  likes     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
